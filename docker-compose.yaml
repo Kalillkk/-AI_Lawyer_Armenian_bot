@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    env_file:
+      - .env
+    restart: always
+    
+  web:
+    build: .
+    command: gunicorn web.app:app --bind 0.0.0.0:8080
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: always
